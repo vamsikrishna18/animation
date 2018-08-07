@@ -1,0 +1,175 @@
+
+
+<!DOCTYPE html >
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <title>stripeone</title>
+<style type="text/css">
+
+.container-marquee{
+position: relative;
+width:100%; 
+height: 200px; 
+overflow: hidden;
+background-color:white;
+padding: 2px;
+padding-left: 4px;
+}
+
+
+
+
+.icon {position: relative; display:table-cell;}
+.icon:nth-child(1) {top:20px;right:50px;}
+.icon:nth-child(2){width:50px;height:50px;top:10px;left:50px;}
+.icon:nth-child(3) {top:200px;left:100px;}
+.icon:nth-child(4) {width:20px;height:20px;top:20px;left:30px;}
+.icon:nth-child(5) {top:40px;left:50px;}
+.icon:nth-child(6) {top:250px;right:1000px;}
+.icon:nth-child(7) {top:300px;right:45%;}
+.icon:nth-child(8) {top:60px;right:250px;}
+.icon:nth-child(9) {top:200px;right:500px;}
+.icon:nth-child(10) {top:1px;right:29%;}
+.icon:nth-child(11) {top:200px;left:50%;}
+.icon:nth-child(12) {top:300px;right:40%;}
+
+.icon {
+	animation-name: floating;
+	-webkit-animation-name: floating;
+	animation-iteration-count:infinite;
+	-webkit-animation-iteration-count: infinite;
+	animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+    
+}
+.icon:nth-child(1) {animation-duration: 6s;}
+.icon:nth-child(2) {animation-duration: 7s;}
+.icon:nth-child(3) {animation-duration: 5s;}
+.icon:nth-child(4) {animation-duration: 4s;}
+.icon:nth-child(5) {animation-duration: 5s;}
+.icon:nth-child(6) {animation-duration: 6s;}
+.icon:nth-child(7) {animation-duration: 5s;}
+.icon:nth-child(8) {animation-duration: 8s;}
+.icon:nth-child(9) {animation-duration: 7s;}
+.icon:nth-child(10) {animation-duration: 7s;}
+.icon:nth-child(11) {animation-duration: 6s;}
+.icon:nth-child(12) {animation-duration: 5s;}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+@keyframes floating {
+	0% {
+		transform: translateY(0%);	
+	}
+	50% {
+		transform: translateY(20%);	
+	}	
+	100% {
+		transform: translateY(0%);
+	}			
+}
+@-webkit-keyframes floating {
+	0% {
+		-webkit-transform: translateY(0%);	
+	}
+	50% {
+		-webkit-transform: translateY(15%);	
+	}	
+	100% {
+		-webkit-transform: translateY(0%);
+	}
+}
+
+</style>
+
+<script type="text/javascript">
+var zxcMarquee={
+
+ init:function(o){
+  var mde=o.Mode,mde=typeof(mde)=='string'&&mde.charAt(0).toUpperCase()=='H'?['left','offsetWidth','top','width']:['top','offsetHeight','left','height'],id=o.ID,srt=o.StartDelay,ud=o.StartDirection,p=document.getElementById(id),obj=p.getElementsByTagName('DIV')[0],sz=obj[mde[1]],clone;
+  p.style.overflow='hidden';
+  obj.style.position='absolute';
+  obj.style[mde[0]]='0px';
+  obj.style[mde[3]]=sz+'px';
+  clone=obj.cloneNode(true);
+  clone.style[mde[0]]=sz+'px';
+  clone.style[mde[2]]='0px';
+  obj.appendChild(clone);
+  o=this['zxc'+id]={
+   obj:obj,
+   mde:mde[0],
+   sz:sz
+  }
+  if (typeof(srt)=='number'){
+   o.dly=setTimeout(function(){ zxcMarquee.scroll(id,typeof(ud)=='number'?ud:-1); },srt);
+  }
+  else {
+   this.scroll(id,0)
+  }
+ },
+
+ scroll:function(id,ud){
+  var oop=this,o=this['zxc'+id],p;
+  if (o){
+   ud=typeof(ud)=='number'?ud:0;
+   clearTimeout(o.dly);
+   p=parseInt(o.obj.style[o.mde])+ud;
+   if ((ud>0&&p>0)||(ud<0&&p<-o.sz)){
+    p+=o.sz*(ud>0?-1:1);
+   }
+   o.obj.style[o.mde]=p+'px';
+   o.dly=setTimeout(function(){ oop.scroll(id,ud); },5);
+  }
+ }
+}
+
+function init(){
+
+ zxcMarquee.init({
+  ID:'marquee1',     
+  Mode:'Horizontal', 
+  StartDelay:500,   
+  StartDirection:-1  
+  });
+
+
+}
+
+if (window.addEventListener)
+ window.addEventListener("load", init, false)
+else if (window.attachEvent)
+ window.attachEvent("onload", init)
+else if (document.getElementById)
+ window.onload=init
+
+
+</script>
+
+</head>
+
+<body>
+<div id="marquee1"> 
+<div style="position: absolute; width: 100%;">
+    <span title="twitter" class="icon"><img src="icon10.jpg" width:"100";height:"100";  alt="avatar"></span>
+    <span title="instagram" class="icon"><img src="icon11.jpg" alt="avatar"></span>
+    <span title="apple" class="icon"><img src="apple.png"  height:"150" width="150" alt="avatar"></span>
+    <span title="facebook" class="icon"><img src="icon3.jpg" alt="avatar"></span>
+    <span title="android" class="icon"><img src="icon4.png" height:"200" width="200" alt="avatar"></span>
+    <span title="youtube" class="icon"><img src="icon7.png" height:"200" width="200" alt="avatar"></span>
+    <span title="slack" class="icon"><img src="icon8.png" height:"200" width="200" ></span>
+    <span title="whatsapp" class="icon"><img src="icon9.png" height:"100" width="100" alt="avatar"></span>
+    <span title="mi" class="icon"><img src="icon5.jpg" height="150" weight="150"></span> 
+    <span title="messenger" class="icon"><img src="icon12.png" height="100" weight="100" alt="avatar"></span> 
+    <span title="skype" class="icon"><img src="icon13.png" height="150" weight="150"></span>
+    <span title="twitter" class="icon"><img src="icon4.png" height="150" weight="150" alt="avatar"></span>
+</div>
+</div>
+
+</body>
+
+</html>
+
